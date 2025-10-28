@@ -1,36 +1,53 @@
 ﻿"use client";
-import React from 'react';
-import { FieldType } from '../lib/dataGenerators';
+import { FC } from "react";
+import { Field, FieldType } from "@/types";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { X, Sigma } from "lucide-react";
 
-type FieldRowProps = {
-    id: string;
-    name: string;
-    type: FieldType;
-    onChange: (id: string, name: string, type: FieldType) => void;
+interface FieldRowProps {
+    field: Field;
+    onUpdate: (field: Field) => void;
     onDelete: (id: string) => void;
-};
+}
 
-export default function FieldRow({ id, name, type, onChange, onDelete }: FieldRowProps) {
+const types: FieldType[] = ["Row Number", "First Name", "Last Name", "Email Address", "Gender", "IP Address v4"];
+
+const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete }) => {
     return (
-        <div className="flex items-center gap-2">
-            <input
-                value={name}
-                onChange={(e) => onChange(id, e.target.value, type)}
-                className="border rounded px-2 py-1 flex-1"
+        <div className="flex items-center gap-2 rounded bg-gray-800 p-2">
+            <Input
+                value={field.name}
+                onChange={(e) => onUpdate({ ...field, name: e.target.value })}
+                className="flex-1 bg-gray-900 text-white"
             />
-            <select
-                value={type}
-                onChange={(e) => onChange(id, name, e.target.value as FieldType)}
-                className="border rounded px-2 py-1"
+            <Select
+                value={field.type}
+                onValueChange={(value: FieldType) => onUpdate({ ...field, type: value })}
             >
-                <option>Name</option>
-                <option>Email</option>
-                <option>Integer</option>
-                <option>Date</option>
-                <option>Boolean</option>
-                <option>Sentence</option>
-            </select>
-            <button onClick={() => onDelete(id)} className="text-red-600 font-bold px-2 py-1">Delete</button>
+                <SelectTrigger className="w-40">
+                    <SelectValue placeholder="Select type" />
+                </SelectTrigger>
+                <SelectContent>
+                    {types.map((t) => (
+                        <SelectItem key={t} value={t}>{t}</SelectItem>
+                    ))}
+                </SelectContent>
+            </Select>
+            <Input
+                type="number"
+                value={field.blankPercent}
+                onChange={(e) => onUpdate({ ...field, blankPercent: Number(e.target.value) })}
+                className="w-16 bg-gray-900 text-white"
+            />
+            <button onClick={() => onUpdate({ ...field, sum: !field.sum })} className="p-2">
+                <Sigma className={`text-white ${field.sum ? "text-yellow-400" : ""}`} />
+            </button>
+            <button onClick={() => onDelete(field.id)} className="p-2">
+                <X className="text-red-500" />
+            </button>
         </div>
     );
-}
+};
+
+export default FieldRow;
