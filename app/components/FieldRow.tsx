@@ -15,17 +15,17 @@ const types: FieldType[] = ["Row Number", "First Name", "Last Name", "Email Addr
 
 const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete }) => {
     return (
-        <div className="flex items-center gap-2 rounded bg-gray-800 p-2">
+        <div className="flex items-center gap-2 rounded bg-gray-950 p-2">
             <Input
                 value={field.name}
                 onChange={(e) => onUpdate({ ...field, name: e.target.value })}
-                className="flex-1 bg-gray-900 text-white"
+                className="flex-1 bg-gray-950 text-yellow-500"
             />
             <Select
                 value={field.type}
                 onValueChange={(value: FieldType) => onUpdate({ ...field, type: value })}
             >
-                <SelectTrigger className="w-40">
+                <SelectTrigger className="w-40 text-yellow-500">
                     <SelectValue placeholder="Select type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -38,10 +38,10 @@ const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete }) => {
                 type="number"
                 value={field.blankPercent}
                 onChange={(e) => onUpdate({ ...field, blankPercent: Number(e.target.value) })}
-                className="w-16 bg-gray-900 text-white"
+                className="w-16 bg-gray-950 text-yellow-500"
             />
             <button onClick={() => onUpdate({ ...field, sum: !field.sum })} className="p-2">
-                <Sigma className={`text-white ${field.sum ? "text-yellow-400" : ""}`} />
+                <Sigma className={`text-white ${field.sum ? "text-yellow-500" : ""}`} />
             </button>
             <button onClick={() => onDelete(field.id)} className="p-2">
                 <X className="text-red-500" />

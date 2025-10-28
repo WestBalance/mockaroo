@@ -7,6 +7,9 @@ import { v4 as uuid } from "uuid";
 const FieldTable: FC = () => {
     const [fields, setFields] = useState<Field[]>([
         { id: uuid(), name: "id", type: "Row Number", blankPercent: 0, sum: false },
+        { id: uuid(), name: "Name", type: "First Name", blankPercent: 0, sum: false },
+        { id: uuid(), name: "Gender", type: "Gender", blankPercent: 0, sum: false },
+        { id: uuid(), name: "E-mail", type: "Email Address", blankPercent: 0, sum: false },
     ]);
 
     const addField = () => setFields([...fields, { id: uuid(), name: "", type: "First Name", blankPercent: 0, sum: false }]);
@@ -18,7 +21,7 @@ const FieldTable: FC = () => {
             {fields.map(field => (
                 <FieldRow key={field.id} field={field} onUpdate={updateField} onDelete={deleteField} />
             ))}
-            <button onClick={addField} className="mt-2 rounded bg-white p-2 text-black">+ Add Another Field</button>
+            <button onClick={addField} className="mt-2 rounded bg-yellow-500 p-2 text-black hover:bg-orange-400">+ Add Another Field</button>
         </div>
     );
 };
