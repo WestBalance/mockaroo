@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useUser, RedirectToSignIn, SignOutButton } from "@clerk/nextjs";
+import { useUser, RedirectToSignIn } from "@clerk/nextjs";
 
 export default function SavedSchemasPage() {
     const { user, isSignedIn } = useUser();

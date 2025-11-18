@@ -1,28 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// src/app/api/generate/route.ts
-import { NextResponse } from 'next/server';
-import { faker } from '@faker-js/faker';
+import { NextResponse } from "next/server";
+import { generateData } from "@/utils/generateData";
+import { Field } from "@/types";
 
-type Field = { id: string; name: string; type: string; options?: Record<string, any> };
+export async function POST(req: Request) {
+    try {
+        const { fields, rowCount } = await req.json() as {
+            fields: Field[];
+            rowCount: number;
+        };
 
-export async function POST(request: Request) {
-    const { schema, rows } = await request.json() as { schema: Field[]; rows: number };
-    const out = [];
-    for (let i = 0; i < (rows || 10); i++) {
-        const item: Record<string, any> = {};
-        for (const f of schema) {
-            switch (f.type) {
-                case 'Name': item[f.name] = faker.person.fullName(); break;
-                case 'Email': item[f.name] = faker.internet.email(); break;
-                case 'Integer': item[f.name] = faker.number.int({ min: 0, max: 1000 }); break;
-                case 'Date': item[f.name] = faker.date.past().toISOString(); break;
-                case 'Boolean': item[f.name] = faker.datatype.boolean(); break;
-                case 'Sentence': item[f.name] = faker.lorem.sentence(); break;
-                default: item[f.name] = null;
-            }
+        if (!fields || fields.length === 0) {
+            return NextResponse.json({ error: "Fields are required" }, { status: 400 });
         }
-        out.push(item);
-    }
 
-    return NextResponse.json(out);
+        const data = generateData(fields, rowCount || 100);
+
+        return NextResponse.json({ data }, { status: 200 });
+    } catch (error) {
+        console.error(error);
+        return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+    }
 }

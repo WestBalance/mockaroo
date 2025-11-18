@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// utils/fieldGenerators.ts
-// Расширенный генератор данных без faker.js
-// >100 типов, с десятками возможных значений на каждый
+
+
 
 // ---------- Вспомогательные функции ----------
 function randomItem<T>(arr: T[]): T {
