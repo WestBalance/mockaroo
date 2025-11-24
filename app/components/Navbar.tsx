@@ -29,7 +29,7 @@ export default function Navbar() {
                  
 
                     <Link
-                        href="/dashboard"
+                        href="/saved-schemas"
                         className="text-xl font-bold transition-colors hover:text-orange-600"
                     >
                         Saved Schemas

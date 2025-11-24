@@ -1,45 +1,48 @@
-﻿
-import { FC, useState } from "react";
+﻿"use client";
+
+import { FC } from "react";
 import FieldRow from "./FieldRow";
-import { Field } from "@/types";
+import { Field } from "@/types/Fields";
+import { useSchemaStore } from "@/store/schemaStore";
 import { v4 as uuid } from "uuid";
+import { FieldType } from "@/types/FieldTypes";
 
-interface FieldTableProps {
-    onFieldsChange?: (fields: Field[]) => void;
-}
+const FieldTable: FC = () => {
+    // всё берем из Zustand
+    const fields = useSchemaStore((s) => s.fields);
+    const addField = useSchemaStore((s) => s.addField);
+    const updateField = useSchemaStore((s) => s.updateField);
+    const deleteField = useSchemaStore((s) => s.deleteField);
 
-const FieldTable: FC<FieldTableProps> = ({ onFieldsChange }) => {
-    const [fields, setFields] = useState<Field[]>([
-             { id: uuid(), name: "Name", type: "First Name", blankPercent: 0, sum: false }
- 
-    ]);
-
-    const updateField = (updated: Field) => {
-        const newFields = fields.map((f) => (f.id === updated.id ? updated : f));
-        setFields(newFields);
-        onFieldsChange?.(newFields);
+    // обновление одного поля
+    const handleUpdate = (updated: Field) => {
+        updateField(updated.id, {
+            name: updated.name,
+            type: updated.type,
+            blankPercent: updated.blankPercent,
+            sum: updated.sum,
+        });
     };
 
-    const deleteField = (id: string) => {
-        const newFields = fields.filter((f) => f.id !== id);
-        setFields(newFields);
-        onFieldsChange?.(newFields);
+    // удаление
+    const handleDelete = (id: string) => {
+        deleteField(id);
     };
 
-    const addField = () => {
-        const defaultType = "First Name";
+    // добавление нового поля
+    const handleAdd = () => {
+        const defaultType: FieldType = "First Name";
+
         const newField: Field = {
             id: uuid(),
-            name: defaultType, 
+            name: defaultType,
             type: defaultType,
             blankPercent: 0,
             sum: false,
         };
-        const newFields = [...fields, newField];
-        setFields(newFields);
-        onFieldsChange?.(newFields);
-    };
 
+        addField(newField);
+    };
 
     return (
         <div className="flex w-auto flex-col gap-2">
@@ -47,13 +50,22 @@ const FieldTable: FC<FieldTableProps> = ({ onFieldsChange }) => {
                 <span className="w-40">Field Name</span>
                 <span className="w-32">Field Type</span>
                 <span className="w-20">Blank %</span>
-                <span className=" w-12">SUMM</span>
+                <span className="w-12">SUMM</span>
             </div>
+
             {fields.map((field) => (
-                <FieldRow key={field.id} field={field} onUpdate={updateField} onDelete={deleteField} />
+                <FieldRow
+                    key={field.id}
+                    field={field}
+                    onUpdate={handleUpdate}
+                    onDelete={handleDelete}
+                />
             ))}
-            <button onClick={addField} className="mt-2 ml-30 w-full max-w-[530px]
- justify-center truncate rounded bg-yellow-500 p-2 px-3 text-black hover:bg-orange-400">
+
+            <button
+                onClick={handleAdd}
+                className="mt-2 ml-30 w-full max-w-[530px] justify-center truncate rounded bg-yellow-500 p-2 px-3 text-black hover:bg-orange-400"
+            >
                 + Add Another Field
             </button>
         </div>
