@@ -1,7 +1,7 @@
 [
   {
     "id": "1763992404608",
-    "name": "saved fgefgdf",
+    "name": "Test schema",
     "fields": [
       {
         "id": "dc6cd35c-7eb2-48af-a5c5-da141eccf5e6",
@@ -9,103 +9,22 @@
         "type": "First Name",
         "blankPercent": 0,
         "sum": false
-      },
-      {
-        "id": "0089fd47-a53e-4c55-ae34-da45c94fc612",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      },
-      {
-        "id": "cd4ba8f3-b9dc-4a1f-9f85-ed884cc5f7d4",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
       }
     ]
   },
   {
-    "id": "1763993480449",
-    "name": "авы",
-    "fields": [
-      {
-        "id": "bebfb3b1-8f85-4b79-9033-52c6b00901fa",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      },
-      {
-        "id": "dc6746c4-e7b8-4644-b9a2-bf5f25b13034",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      }
-    ]
-  },
-  {
-    "id": "1763993525646",
-    "name": "ddqw",
-    "fields": [
-      {
-        "id": "5a980b82-6d1c-47f6-8755-62bbec37bcb1",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      }
-    ]
-  },
-  {
-    "id": "1763993570349",
-    "name": "2eqsqdqs",
-    "fields": [
-      {
-        "id": "5a980b82-6d1c-47f6-8755-62bbec37bcb1",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      },
-      {
-        "id": "59d46248-748f-4cbe-9028-cb036f634218",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      }
-    ]
-  },
-  {
-    "id": "1763993591874",
+    "id": "1764014225746",
     "name": "1",
     "fields": [
       {
-        "id": "bebfb3b1-8f85-4b79-9033-52c6b00901fa",
+        "id": "889082ad-8f3a-49a5-80d7-4a6a52d6c05b",
         "name": "First Name",
         "type": "First Name",
         "blankPercent": 0,
         "sum": false
       },
       {
-        "id": "66a6f9b3-4c35-499f-9350-406aeab8c21c",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      },
-      {
-        "id": "66ffa60c-5084-4d64-bc84-fd6b8ea4a0fc",
-        "name": "Email Address",
-        "type": "Email Address",
-        "blankPercent": 0,
-        "sum": false
-      },
-      {
-        "id": "218094da-1f28-4f43-a8e3-9d78463122a7",
+        "id": "997b9b89-b2b7-4ad7-8fd5-96dc3f045282",
         "name": "First Name",
         "type": "First Name",
         "blankPercent": 0,
@@ -114,32 +33,32 @@
     ]
   },
   {
-    "id": "1763993786284",
-    "name": "в",
+    "id": "1764171745909",
+    "name": "12",
     "fields": [
       {
-        "id": "bebfb3b1-8f85-4b79-9033-52c6b00901fa",
+        "id": "c6f2492a-6a92-4b93-8bbe-4f1e2f3b68b5",
         "name": "First Name",
         "type": "First Name",
         "blankPercent": 0,
         "sum": false
       },
       {
-        "id": "66a6f9b3-4c35-499f-9350-406aeab8c21c",
+        "id": "68b934b9-acf6-41af-b1a0-382b81c8e1b6",
+        "name": "Age",
+        "type": "Age",
+        "blankPercent": 40,
+        "sum": false
+      },
+      {
+        "id": "4cb71ab8-c6a3-4e87-bc0c-8155db3a9a1e",
         "name": "First Name",
         "type": "First Name",
         "blankPercent": 0,
         "sum": false
       },
       {
-        "id": "66ffa60c-5084-4d64-bc84-fd6b8ea4a0fc",
-        "name": "Email Address",
-        "type": "Email Address",
-        "blankPercent": 0,
-        "sum": false
-      },
-      {
-        "id": "218094da-1f28-4f43-a8e3-9d78463122a7",
+        "id": "af38b5f0-a3d8-4692-a8a0-cba365e0f5bf",
         "name": "First Name",
         "type": "First Name",
         "blankPercent": 0,
@@ -148,20 +67,13 @@
     ]
   },
   {
-    "id": "1763994266985",
-    "name": "рлп",
+    "id": "1764171776664",
+    "name": "3",
     "fields": [
       {
-        "id": "d9ae44c3-31d0-464d-9174-4182dfa72b66",
-        "name": "Avatar URL",
-        "type": "Avatar URL",
-        "blankPercent": 0,
-        "sum": false
-      },
-      {
-        "id": "f0ad37a7-a40a-447a-b2e9-1bc6aa541c99",
-        "name": "URL",
-        "type": "URL",
+        "id": "dc6cd35c-7eb2-48af-a5c5-da141eccf5e6",
+        "name": "First Name",
+        "type": "First Name",
         "blankPercent": 0,
         "sum": false
       }

@@ -1,9 +1,7 @@
 ﻿import { useState, FC } from "react";
 import { Field } from "@/types";
-import { allFieldTypesWithCategories, FieldTypeWithCategory } from "@/types/FieldTypes";
+import { allFieldTypesWithCategories, FieldType } from "@/types/FieldTypes";
 import FieldTypeSelectorModal from "./FieldTypeSelectorModal";
-import { FieldType } from "@/types/FieldTypes";
-
 
 interface FieldRowProps {
     field: Field;
@@ -27,45 +25,44 @@ const isNumericType = (type: string) => {
 };
 
 const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete }) => {
-    const [showModal, setShowModal] = useState(false);
+    const [showTypeModal, setShowTypeModal] = useState(false);
+    const [showAiModal, setShowAiModal] = useState(false);
+    const [aiInput, setAiInput] = useState("");
 
     return (
         <div className="ml-40 flex items-center gap-2">
 
             {/* Название поля */}
-
             <input
                 value={field.name}
                 onChange={(e) => onUpdate({ ...field, name: e.target.value })}
                 className="border rounded p-1 bg-white text-black hover:bg-yellow-400"
             />
 
-            {/* Кнопка открытия модального */}
+            {/* Кнопка открытия модального выбора типа */}
             <button
-                onClick={() => setShowModal(true)}
+                onClick={() => setShowTypeModal(true)}
                 className="border rounded w-full max-w-40 p-1 bg-white text-black hover:bg-yellow-400 text-left justify-between"
             >
                 {field.type}
             </button>
 
             {/* Модальное окно выбора типа */}
-            {showModal && (
+            {showTypeModal && (
                 <FieldTypeSelectorModal
                     types={allFieldTypesWithCategories}
                     selected={field.type}
                     onSelect={(newType) => {
                         const sameAsType = field.name === field.type;
-
-                    
                         onUpdate({
                             ...field,
                             type: newType as FieldType,
                             name: sameAsType ? (newType as FieldType) : field.name
                         });
+                        setShowTypeModal(false);
                     }}
-                    onClose={() => setShowModal(false)}
+                    onClose={() => setShowTypeModal(false)}
                 />
-
             )}
 
             {/* Blank % */}
@@ -78,22 +75,6 @@ const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete }) => {
                 className="border rounded p-1 w-16 bg-white text-black hover:bg-yellow-400 text-center"
             />
 
-            {/* Σ button */}
-            <button
-                className={`px-2 py-1 rounded ml-6
-                    ${field.sum
-                        ? "bg-green-500 text-white"
-                        : isNumericType(field.type)
-                            ? "bg-gray-300 hover:bg-yellow-500 cursor-pointer"
-                            : "bg-gray-300 opacity-50 cursor-not-allowed"
-                    }
-                `}
-                disabled={!isNumericType(field.type)}
-                onClick={() => onUpdate({ ...field, sum: !field.sum })}
-            >
-                Σ
-            </button>
-
             {/* Delete */}
             <button
                 onClick={() => onDelete(field.id)}
@@ -101,6 +82,48 @@ const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete }) => {
             >
                 X
             </button>
+
+            {/* Кнопка ИИ */}
+            <button
+                onClick={() => setShowAiModal(true)}
+                className="border rounded w-8 h-8 bg-gray-200 hover:bg-yellow-400 flex items-center justify-center"
+            >
+                🤖
+            </button>
+
+            {/* Модальное окно ИИ */}
+            {showAiModal && (
+                <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black">
+                    <div className="w-96 rounded bg-black p-6 shadow-lg">
+                        <h2 className="mb-4 text-lg font-bold">Опишите необходимые значения или само поле</h2>
+                        <textarea
+                            value={aiInput}
+                            onChange={(e) => setAiInput(e.target.value)}
+                            className="w-full border rounded p-2 mb-4"
+                            rows={4}
+                            placeholder="Введите описание..."
+                        />
+                        <div className="flex justify-end gap-2">
+                            <button
+                                onClick={() => setShowAiModal(false)}
+                                className="px-4 py-2 bg-red-500 rounded hover:bg-red-400"
+                            >
+                                Закрыть
+                            </button>
+                            <button
+                                onClick={() => {
+                                    console.log("AI input:", aiInput);
+                                    setShowAiModal(false);
+                                }}
+                                className="px-4 py-2 bg-green-500 rounded hover:bg-green-400"
+                            >
+                                Отправить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 };

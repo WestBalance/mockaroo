@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FieldType } from "@/types/FieldTypes";
 
 export interface Field {
@@ -6,4 +7,5 @@ export interface Field {
     type: FieldType;
     blankPercent: number;
     sum: boolean;
+    aiValues?: any[]; 
 }

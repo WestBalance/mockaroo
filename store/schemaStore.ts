@@ -28,12 +28,12 @@ export const useSchemaStore = create<SchemaState>((set) => ({
             fields: [...state.fields, { ...field }],
         })),
 
-    updateField: (id, updated) =>
+    updateField: (id: string, updated: Partial<Field>) => {
         set((state) => ({
-            fields: state.fields.map((f) =>
-                f.id === id ? { ...f, ...updated } : f
-            ),  
-        })),
+            fields: state.fields.map((f) => f.id === id ? { ...f, ...updated } : f)
+        }));
+    }
+,
 
     deleteField: (id) =>
         set((state) => ({

@@ -1,10 +1,10 @@
 ﻿"use client";
-import { useEffect, useState } from "react";
 import { useUser, RedirectToSignIn } from "@clerk/nextjs";
+import { useEffect, useState } from "react";
 import { useSchemaStore } from "@/store/schemaStore";
 import { Field } from "@/types/Fields";
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 
 interface Schema {
     id: string;
@@ -14,8 +14,8 @@ interface Schema {
 
 export default function SavedSchemasPage() {
     const { isSignedIn } = useUser();
-    const router = useRouter();
     const [schemas, setSchemas] = useState<Schema[]>([]);
+    const router = useRouter();
 
     const setSchemaName = useSchemaStore((s) => s.setSchemaName);
     const setFields = useSchemaStore((s) => s.setFields);
@@ -32,30 +32,28 @@ export default function SavedSchemasPage() {
         setSchemaName(schema.name);
         setFields(schema.fields);
         toast.success(`Schema "${schema.name}" loaded!`);
-        router.push("/"); // возвращаем на главную
+
+        // Переадресация на главную
+        router.push("/");
     };
 
     const deleteSchema = async (id: string) => {
-        if (!confirm("Are you sure you want to delete this schema?")) return;
+        const res = await fetch(`/api/schemas/${id}`, {
+            method: "DELETE",
+        });
 
-        try {
-            const res = await fetch(`/api/schemas/${id}`, { method: "DELETE" });
-            if (!res.ok) {
-                const json = await res.json();
-                return toast.error(json.error || "Failed to delete schema");
-            }
-
-            setSchemas((prev) => prev.filter((s) => s.id !== id));
-            toast.success("Schema deleted!");
-        } catch (err) {
-            console.error(err);
-            toast.error("Error deleting schema — check console");
+        if (!res.ok) {
+            toast.error("Failed to delete schema");
+            return;
         }
+
+        setSchemas((prev) => prev.filter((s) => s.id !== id));
+        toast.success("Schema deleted");
     };
 
     return (
         <div className="min-h-screen bg-gray-950 p-10 text-white">
-            <div className="mx-auto max-w-4xl">
+            <div className="mx-auto max-w-xl">
                 <h1 className="mb-5 text-3xl font-bold text-yellow-500">
                     Your Saved Schemas
                 </h1>
@@ -65,15 +63,20 @@ export default function SavedSchemasPage() {
                         {schemas.map((s) => (
                             <li
                                 key={s.id}
-                                className="flex cursor-pointer items-center justify-between rounded-md bg-yellow-500 p-3 font-bold text-black hover:bg-orange-500"
+                                onClick={() => loadSchema(s)}
+                                className="flex items-center justify-between rounded-md bg-yellow-500 p-3 text-black 
+                                           cursor-pointer hover:bg-yellow-400 transition"
                             >
-                                <span onClick={() => loadSchema(s)}>{s.name}</span>
+                                <span className="font-bold">{s.name}</span>
+
                                 <button
-                                    onClick={() => deleteSchema(s.id)}
-                                    className="ml-4 text-red-700 font-bold hover:text-red-900"
-                                    title="Delete schema"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        deleteSchema(s.id);
+                                    }}
+                                    className="rounded-full bg-red-600 px-3 py-1 text-white hover:bg-red-700"
                                 >
-                                    ✕
+                                    X
                                 </button>
                             </li>
                         ))}

@@ -50,7 +50,7 @@ const FieldTable: FC = () => {
                 <span className="w-40">Field Name</span>
                 <span className="w-32">Field Type</span>
                 <span className="w-20">Blank %</span>
-                <span className="w-12">SUMM</span>
+         
             </div>
 
             {fields.map((field) => (
