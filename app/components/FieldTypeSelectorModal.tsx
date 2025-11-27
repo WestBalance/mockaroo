@@ -8,11 +8,7 @@ import { FieldTypeWithCategory } from "@/types/FieldTypes";
 export const staticExamples: Record<string, string[]> = {
     // --- System ---
     "Row Number": ["1", "2", "3"],
-    "UUID": [
-        "123e4567-e89b-12d3-a456-426614174000",
-        "987e6543-e21b-34d3-a456-426614174111",
-        "456e7890-e12b-45d3-a456-426614174222"
-    ],
+    "UUID": ["123e4567-e89b-12d3-a456-426614174000", "987e6543-e21b-34d3-a456-426614174111", "456e7890-e12b-45d3-a456-426614174222"],
     "Increment ID": ["1001", "1002", "1003"],
 
     // --- Personal ---
@@ -28,6 +24,10 @@ export const staticExamples: Record<string, string[]> = {
     "Password": ["Pa$$w0rd1", "MySecret12", "TopSecret!3"],
     "Avatar URL": ["https://i.pravatar.cc/150?img=1", "https://i.pravatar.cc/150?img=2", "https://i.pravatar.cc/150?img=3"],
     "Profile Bio": ["Hello world!", "I love coding.", "Mockaroo clone user."],
+    "Nationality": ["American", "German", "Romanian"],
+    "Marital Status": ["Single", "Married", "Divorced"],
+    "Religion": ["Christianity", "Islam", "None"],
+    "Language Spoken": ["English", "French", "German"],
 
     // --- Internet ---
     "Domain": ["example.com", "testsite.org", "mywebsite.net"],
@@ -38,6 +38,7 @@ export const staticExamples: Record<string, string[]> = {
     "User Agent": ["Chrome", "Firefox", "Safari"],
     "Browser": ["Chrome", "Firefox", "Edge"],
     "Operating System": ["Windows", "macOS", "Linux"],
+    "Email Provider": ["Gmail", "Yahoo", "Outlook"],
 
     // --- Location ---
     "Country": ["USA", "Canada", "Germany"],
@@ -48,6 +49,8 @@ export const staticExamples: Record<string, string[]> = {
     "Latitude": ["40.71278", "43.6532", "52.5200"],
     "Longitude": ["-74.00597", "-79.3832", "13.4050"],
     "Time Zone": ["UTC-5", "UTC-5", "UTC+1"],
+    "State / Province": ["California", "Texas", "Ontario"],
+    "Region": ["North", "South", "West"],
 
     // --- Company / Business ---
     "Company Name": ["Google", "Apple", "Microsoft"],
@@ -58,6 +61,10 @@ export const staticExamples: Record<string, string[]> = {
     "IBAN": ["MD123456789012345678", "MD987654321098765432", "MD111122223333444455"],
     "Credit Card Number": ["4000-1234-5678-9010", "4000-2345-6789-0123", "4000-3456-7890-1234"],
     "Credit Card Type": ["Visa", "MasterCard", "Amex"],
+    "Company Size": ["Small", "Medium", "Large"],
+    "Business Type": ["Private", "Public", "Startup"],
+    "Office Location": ["New York", "Berlin", "Toronto"],
+    "Manager Name": ["Liam Smith", "Emma Johnson", "Noah Williams"],
 
     // --- Product / Commerce ---
     "Product Name": ["Laptop", "Phone", "Book"],
@@ -70,6 +77,18 @@ export const staticExamples: Record<string, string[]> = {
     "Color": ["Red", "Blue", "Green"],
     "Material": ["Cotton", "Plastic", "Metal"],
     "Size": ["S", "M", "L"],
+    "Warranty Period": ["12 months", "24 months", "36 months"],
+    "Supplier": ["Amazon", "Alibaba", "Ebay"],
+
+    // --- Insurance ---
+    "Life Insurance Type": ["Term", "Whole", "Universal"],
+    "Life Insurance Premium": ["100", "250", "500"],
+    "Health Insurance Type": ["HMO", "PPO", "EPO"],
+    "Health Insurance Coverage": ["10000", "25000", "50000"],
+    "Car Insurance Type": ["Liability", "Comprehensive", "Collision"],
+    "Car Insurance Premium": ["200", "500", "1000"],
+    "Home Insurance Type": ["Basic", "Premium", "Comprehensive"],
+    "Home Insurance Coverage": ["50000", "150000", "300000"],
 
     // --- Dates & Time ---
     "Date": ["2025-01-01", "2024-12-31", "2023-06-15"],
@@ -99,12 +118,17 @@ export const staticExamples: Record<string, string[]> = {
     "Salary": ["1000", "5000", "12000"],
     "Bitcoin Address": ["bc1abc123...", "bc1def456...", "bc1ghi789..."],
     "Ethereum Address": ["0xabc123...", "0xdef456...", "0xghi789..."],
+    "Stock Symbol": ["AAPL", "GOOG", "MSFT"],
+    "Credit Score": ["700", "650", "800"],
 
     // --- Education ---
     "University": ["Harvard", "MIT", "Stanford"],
     "Degree": ["BSc", "MSc", "PhD"],
     "Course Name": ["Math 101", "Physics 201", "CS 301"],
     "Grade": ["A", "B", "C"],
+    "Field of Study": ["Computer Science", "Physics", "Economics"],
+    "Enrollment Year": ["2015", "2018", "2020"],
+    "Graduation Year": ["2019", "2022", "2024"],
 
     // --- Technology ---
     "Programming Language": ["JavaScript", "Python", "TypeScript"],
@@ -114,6 +138,8 @@ export const staticExamples: Record<string, string[]> = {
     "Version": ["1.0.0", "2.5.3", "3.1.2"],
     "Device Type": ["Desktop", "Laptop", "Phone"],
     "UUID Token": ["123e4567-e89b-12d3-a456-426614174000", "987e6543-e21b-34d3-a456-426614174111", "456e7890-e12b-45d3-a456-426614174222"],
+    "OS Version": ["10.0", "11.2", "12.1"],
+    "API Endpoint": ["/api/users", "/api/products", "/api/orders"],
 
     // --- Misc ---
     "Boolean": ["true", "false", "true"],
@@ -133,7 +159,12 @@ export const staticExamples: Record<string, string[]> = {
     "Weather Condition": ["Sunny", "Rainy", "Cloudy"],
     "Temperature °C": ["22", "18", "30"],
     "Temperature °F": ["72", "64", "86"],
-    "Blood Type": ["A+", "O-", "B+"]
+    "Blood Type": ["A+", "O-", "B+"],
+    "Hobby": ["Reading", "Gaming", "Cooking"],
+    "Skill": ["Programming", "Design", "Marketing"],
+    "Favorite Color": ["Red", "Blue", "Green"],
+    "Favorite Food": ["Pizza", "Burger", "Sushi"],
+    "Favorite Drink": ["Water", "Coffee", "Tea"]
 };
 
 
@@ -154,7 +185,6 @@ const FieldTypeSelectorModal: FC<Props> = ({ types, selected, onSelect, onClose 
             t.category.toLowerCase().includes(search.toLowerCase())
     );
 
-    // Группировка по категориям + добавление статических примеров
     const groupedWithExamples = useMemo(() => {
         const grouped: Record<string, { type: FieldTypeWithCategory; examples: string[] }[]> = {};
         filtered.forEach((t) => {
@@ -170,7 +200,6 @@ const FieldTypeSelectorModal: FC<Props> = ({ types, selected, onSelect, onClose 
     return (
         <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 p-4">
             <div className="relative h-[80vh] w-full max-w-5xl overflow-y-auto rounded-lg bg-gray-900 p-6 text-white shadow-lg">
-                {/* Закрыть */}
                 <button
                     onClick={onClose}
                     className="absolute top-3 right-3 text-2xl font-bold text-white hover:text-yellow-400"
@@ -180,7 +209,6 @@ const FieldTypeSelectorModal: FC<Props> = ({ types, selected, onSelect, onClose 
 
                 <h2 className="mb-4 text-2xl font-bold text-cyan-300">Choose a Field Type</h2>
 
-                {/* Поиск */}
                 <div className="mb-6 flex items-center gap-2">
                     <Search size={20} />
                     <input
@@ -192,7 +220,6 @@ const FieldTypeSelectorModal: FC<Props> = ({ types, selected, onSelect, onClose 
                     />
                 </div>
 
-                {/* Секции по категориям */}
                 {Object.keys(groupedWithExamples).map((category) => (
                     <div key={category} className="mb-6">
                         <h3 className="mb-2 text-lg font-semibold text-yellow-500">{category}</h3>

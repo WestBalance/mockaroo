@@ -98,5 +98,25 @@
         "sum": false
       }
     ]
+  },
+  {
+    "id": "1764259402781",
+    "name": "schema",
+    "fields": [
+      {
+        "id": "f3ece0ad-c4d9-488b-9e75-e0db8cde56ba",
+        "name": "First Name",
+        "type": "First Name",
+        "blankPercent": 0,
+        "sum": false
+      },
+      {
+        "id": "d8276a66-5042-40a6-9b8c-8e3063851551",
+        "name": "Last Name",
+        "type": "Last Name",
+        "blankPercent": 0,
+        "sum": false
+      }
+    ]
   }
 ]

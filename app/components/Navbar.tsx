@@ -9,8 +9,9 @@ export default function Navbar() {
     const { user, isSignedIn } = useUser();
 
     return (
-        <header className="w-full bg-[#0d1220] border-b border-cyan-400 
-                           shadow-[0_0_12px_rgba(0,255,255,0.25)]">
+        <header className="relative z-20 w-full bg-[#0d1220] border-b border-cyan-400 
+                   shadow-[0_0_12px_rgba(0,255,255,0.25)]">
+
             <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
 
                 {/* Logo */}
@@ -30,6 +31,22 @@ export default function Navbar() {
                                    hover:text-cyan-200 transition"
                     >
                         Saved Schemas
+                    </Link>
+
+                    
+                    <Link
+                        href="/user-guide"
+                        className="text-xl font-bold text-cyan-300 hover:text-cyan-200 transition"
+                    >
+                        User Guide
+                    </Link>
+
+
+                    <Link
+                        href="/faq"
+                        className="text-xl font-bold text-cyan-300 hover:text-cyan-200 transition"
+                    >
+                        FAQ
                     </Link>
                 </div>
 

@@ -2,10 +2,11 @@
 
 import { FC, useEffect } from "react";
 import FieldRow from "./FieldRow";
-import { Field } from "@/types/Fields";
+
 import { useSchemaStore } from "@/store/schemaStore";
 import { v4 as uuid } from "uuid";
-import { FieldType } from "@/types/FieldTypes";
+import { Field, FieldType } from "@/types/";
+
 
 const FieldTable: FC = () => {
     const fields = useSchemaStore((s) => s.fields);
@@ -61,7 +62,7 @@ const FieldTable: FC = () => {
     return (
         <div className="flex flex-col gap-3">
             {/* header */}
-            <div className="ml-50 mb-2 flex gap-4 font-bold 
+            <div className="ml-20    mb-2 flex gap-4 font-bold 
                             text-cyan-300 tracking-wide select-none">
                 <span className="w-40">Field Name</span>
                 <span className="w-33">Field Type</span>
@@ -72,16 +73,17 @@ const FieldTable: FC = () => {
             {fields.map((field) => (
                 <FieldRow
                     key={field.id}
-                    field={field}
-                    onUpdate={handleUpdate}
+                    field={field as Field}      
+                    onUpdate={(f) => handleUpdate(f as Field)}
                     onDelete={handleDelete}
                 />
+
             ))}
 
             {/* Add button */}
             <button
                 onClick={handleAdd}
-                className="mt-3 ml-40 w-[540px] py-2 rounded-xl bg-cyan-600 text-black
+                className="mt-3 ml-10 w-[540px] py-2 rounded-xl bg-cyan-600 text-white
                            font-bold tracking-wide
                            hover:bg-cyan-500 hover:shadow-[0_0_12px_cyan]
                            transition"

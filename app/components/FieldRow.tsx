@@ -1,5 +1,5 @@
 ﻿import { useState, FC } from "react";
-import { Field } from "@/types";
+import { Field } from "@/types/Fields";
 import { allFieldTypesWithCategories, FieldType } from "@/types/FieldTypes";
 import FieldTypeSelectorModal from "./FieldTypeSelectorModal";
 
@@ -15,7 +15,7 @@ const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete }) => {
     const [aiInput, setAiInput] = useState("");
 
     return (
-        <div className="ml-40 flex items-center gap-3 py-2 px-3 rounded-xl 
+        <div className="ml-10 flex items-center gap-3 py-2 px-3 rounded-xl 
                         bg-[#0d1220] border border-[#1b2338]
                         shadow-[0_0_10px_rgba(0,255,255,0.15)]
                         hover:shadow-[0_0_16px_rgba(0,255,255,0.35)] 
