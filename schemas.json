@@ -78,5 +78,25 @@
         "sum": false
       }
     ]
+  },
+  {
+    "id": "1764252659852",
+    "name": "27 11",
+    "fields": [
+      {
+        "id": "1b1f7182-256f-48a1-ba2a-db73d4f5d544",
+        "name": "Custom String",
+        "type": "Custom String",
+        "blankPercent": 0,
+        "sum": false
+      },
+      {
+        "id": "3c01966f-38d9-47b0-9010-d39f6a586012",
+        "name": "Quote",
+        "type": "Quote",
+        "blankPercent": 0,
+        "sum": false
+      }
+    ]
   }
 ]

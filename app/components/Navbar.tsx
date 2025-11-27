@@ -1,45 +1,42 @@
 ﻿"use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useUser, SignInButton, UserButton, SignUpButton } from "@clerk/nextjs";
+import { Logo } from "../components/logo"; 
 
 export default function Navbar() {
     const { user, isSignedIn } = useUser();
 
     return (
-        <header className="w-full bg-yellow-500 text-black shadow-md">
-            <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-                {/* Логотип + кнопки сразу после него */}
+        <header className="w-full bg-[#0d1220] border-b border-cyan-400 
+                           shadow-[0_0_12px_rgba(0,255,255,0.25)]">
+            <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+
+                {/* Logo */}
                 <div className="flex items-center gap-6">
                     <Link
                         href="/"
-                        className="flex items-center gap-2 text-2xl font-extrabold tracking-wide hover:text-orange-600"
+                        className="flex items-center  text-2xl font-extrabold 
+                                   text-cyan-300 hover:text-cyan-200 transition"
                     >
-                        <Image
-                            src="/logo.jpg"
-                            alt="Logo"
-                            width={32}
-                            height={32}
-                        />
+                        <Logo className="w-10 h-10" />
                         <span>Mocker</span>
                     </Link>
 
-                 
-
                     <Link
                         href="/saved-schemas"
-                        className="text-xl font-bold transition-colors hover:text-orange-600"
+                        className="text-xl font-bold text-cyan-300 
+                                   hover:text-cyan-200 transition"
                     >
                         Saved Schemas
                     </Link>
                 </div>
 
-                {/* Право: авторизация */}
+                {/* Auth */}
                 <div className="flex items-center gap-3">
                     {isSignedIn ? (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-3 text-cyan-200">
                             <span className="font-medium">
                                 {user.username || user.emailAddresses[0].emailAddress}
                             </span>
@@ -50,15 +47,21 @@ export default function Navbar() {
                             <SignInButton>
                                 <Button
                                     variant="secondary"
-                                    className="bg-black text-yellow-400 hover:bg-gray-800"
+                                    className="bg-cyan-600 text-black font-bold
+                                               hover:bg-cyan-500 transition
+                                               rounded-lg"
                                 >
                                     Sign In
                                 </Button>
                             </SignInButton>
+
                             <SignUpButton>
                                 <Button
                                     variant="secondary"
-                                    className="border border-gray-950 bg-yellow-500 text-black hover:bg-orange-400"
+                                    className="border border-yellow-300 
+                                               bg-yellow-400 text-black font-bold
+                                               hover:bg-yellow-300 transition
+                                               rounded-lg"
                                 >
                                     Sign Up
                                 </Button>

@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import FieldRow from "./FieldRow";
 import { Field } from "@/types/Fields";
 import { useSchemaStore } from "@/store/schemaStore";
@@ -8,13 +8,34 @@ import { v4 as uuid } from "uuid";
 import { FieldType } from "@/types/FieldTypes";
 
 const FieldTable: FC = () => {
-    // всё берем из Zustand
     const fields = useSchemaStore((s) => s.fields);
     const addField = useSchemaStore((s) => s.addField);
     const updateField = useSchemaStore((s) => s.updateField);
     const deleteField = useSchemaStore((s) => s.deleteField);
 
-    // обновление одного поля
+    // --- Добавляем две базовые строки при первом рендере ---
+    useEffect(() => {
+        if (fields.length === 0) {
+            const defaultFields: Field[] = [
+                {
+                    id: uuid(),
+                    name: "First Name",
+                    type: "First Name",
+                    blankPercent: 0,
+                    sum: false,
+                },
+                {
+                    id: uuid(),
+                    name: "Last Name",
+                    type: "Last Name",
+                    blankPercent: 0,
+                    sum: false,
+                },
+            ];
+            defaultFields.forEach(f => addField(f));
+        }
+    }, []); // пустой массив зависимостей, чтобы выполнить только один раз
+
     const handleUpdate = (updated: Field) => {
         updateField(updated.id, {
             name: updated.name,
@@ -24,35 +45,30 @@ const FieldTable: FC = () => {
         });
     };
 
-    // удаление
-    const handleDelete = (id: string) => {
-        deleteField(id);
-    };
+    const handleDelete = (id: string) => deleteField(id);
 
-    // добавление нового поля
     const handleAdd = () => {
         const defaultType: FieldType = "First Name";
-
-        const newField: Field = {
+        addField({
             id: uuid(),
             name: defaultType,
             type: defaultType,
             blankPercent: 0,
             sum: false,
-        };
-
-        addField(newField);
+        });
     };
 
     return (
-        <div className="flex w-auto flex-col gap-2">
-            <div className="mb-2 ml-55 flex gap-2 font-bold text-yellow-500">
+        <div className="flex flex-col gap-3">
+            {/* header */}
+            <div className="ml-50 mb-2 flex gap-4 font-bold 
+                            text-cyan-300 tracking-wide select-none">
                 <span className="w-40">Field Name</span>
-                <span className="w-32">Field Type</span>
+                <span className="w-33">Field Type</span>
                 <span className="w-20">Blank %</span>
-         
             </div>
 
+            {/* Rows */}
             {fields.map((field) => (
                 <FieldRow
                     key={field.id}
@@ -62,9 +78,13 @@ const FieldTable: FC = () => {
                 />
             ))}
 
+            {/* Add button */}
             <button
                 onClick={handleAdd}
-                className="mt-2 ml-30 w-full max-w-[530px] justify-center truncate rounded bg-yellow-500 p-2 px-3 text-black hover:bg-orange-400"
+                className="mt-3 ml-40 w-[540px] py-2 rounded-xl bg-cyan-600 text-black
+                           font-bold tracking-wide
+                           hover:bg-cyan-500 hover:shadow-[0_0_12px_cyan]
+                           transition"
             >
                 + Add Another Field
             </button>

@@ -112,6 +112,7 @@ export type FieldType =
     | "UUID Token"
 
     // --- Misc ---
+   
     | "Boolean"
     | "Random Number"
     | "Random Float"
@@ -176,3 +177,4 @@ export const allFieldTypesWithCategories: FieldTypeWithCategory[] = allFieldType
 
     return { name: type, category };
 });
+
