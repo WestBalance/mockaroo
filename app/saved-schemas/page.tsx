@@ -29,7 +29,7 @@ export default function SavedSchemasPage() {
             .then((data) => setSchemas(data));
     }, []);
 
-    if (!isSignedIn) return <RedirectToSignIn redirectUrl="/schemas" />;
+    if (!isSignedIn) return <RedirectToSignIn redirectUrl="/saved-schemas" />;
 
     const loadSchema = (schema: Schema) => {
         setSchemaName(schema.name);
@@ -88,7 +88,7 @@ export default function SavedSchemasPage() {
                             }}
                             className="flex items-center gap-1 bg-red-600 hover:bg-red-700 px-3 py-1 rounded-full text-white font-bold transition"
                         >
-                            <Trash2 size={16} /> Delete
+                            <Trash2 size={16} /> 
                         </button>
                     </motion.div>
                 ))}

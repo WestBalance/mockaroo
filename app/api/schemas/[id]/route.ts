@@ -1,34 +1,35 @@
 import { NextResponse } from "next/server";
-import { promises as fs } from "fs";
+import fs from "fs";
 import path from "path";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const filePath = path.join(process.cwd(), "schemas.json");
 
+// Чтение файла
+function readSchemas() {
+    if (!fs.existsSync(filePath)) return [];
+    return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+}
+
+// Сохранение файла
+function writeSchemas(data: any) {
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+}
+
 export async function DELETE(
-    _: Request,
-    { params }: { params: { id: string } }
+    req: Request,
+    context: { params: Promise<{ id: string }> }
 ) {
-    try {
-        // Читаем файл
-        let raw = "[]";
-        try {
-            raw = await fs.readFile(filePath, "utf8");
-        } catch {
-            await fs.writeFile(filePath, "[]");
-        }
+    
+    const { id } = await context.params;
 
-        const list = JSON.parse(raw);
+    const schemas = readSchemas();
+    console.log("Before delete:", schemas.length);
 
-        // Удаляем нужную схему
-        const newList = list.filter((s: any) => s.id !== params.id);
+    const updated = schemas.filter((s: any) => s.id !== id);
+    console.log("After delete:", updated.length);
 
-        // Записываем обновлённый список
-        await fs.writeFile(filePath, JSON.stringify(newList, null, 2));
+    writeSchemas(updated);
 
-        return NextResponse.json({ ok: true });
-    } catch (err) {
-        console.error("DELETE error", err);
-        return NextResponse.json({ error: "Failed to delete" }, { status: 500 });
-    }
+    return NextResponse.json({ success: true });
 }

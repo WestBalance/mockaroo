@@ -1,6 +1,7 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import FieldTable from "@/app/components/FieldTable";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,7 +42,7 @@ export default function Home() {
     const ghostBtn = `${baseBtn} bg-transparent border border-[#233046] text-[#cbd5e1] hover:border-[#7c3aed]`;
     const inputStyle = "bg-[#071226] border border-[#172033] text-[#cbd5e1] rounded-lg h-11 px-3 placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-offset-0";
 
-    // --- Handlers (logic unchanged) ---
+    // --- Handlers  ---
     const generateWithAI = async () => {
         if (!prompt.trim()) return toast.error("Введите описание схемы");
         setAiLoading(true);
@@ -63,6 +64,21 @@ export default function Home() {
         }
     };
 
+    // --- Добавляем состояние только для данных предпросмотра ---
+    const [previewData, setPreviewData] = useState<Record<string, unknown>[]>([]);
+
+    // --- Генерируем одну строку предпросмотра при изменении полей ---
+    useEffect(() => {
+        if (fields.length) {
+            const preview = generateData(fields, 1); // 1 row
+            setPreviewData(preview);
+        } else {
+            setPreviewData([]);
+        }
+    }, [fields]);
+
+
+
     const safeGenerate = () => {
         if (!fields || !Array.isArray(fields)) return toast.error("Fields are not ready. Check console.");
         if (!fields.length) return toast.error("Add some fields first!");
@@ -82,7 +98,11 @@ export default function Home() {
             const res = await fetch("/api/schemas", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: tempName.trim(), fields }),
+                body: JSON.stringify({
+                    name: tempName.trim(),
+                    fields: JSON.parse(JSON.stringify(fields)),  // <-- чистая копия, без Zustand
+                }),
+
             });
             const json = await res.json();
             if (!res.ok) return toast.error(json.error || "Save failed");
@@ -206,6 +226,7 @@ export default function Home() {
                                         <Button onClick={askSchemaName} className={saveBtn}>Save Schema</Button>
                                     </motion.div>
 
+                                   
                                 </div>
                             </div>
 
@@ -214,7 +235,7 @@ export default function Home() {
                                     <Card className="bg-[#071226] border border-[#0f3a2f] p-4 rounded-lg">
                                         <Label className="text-sm font-medium text-[#d1fae5]">Enter Schema Name</Label>
                                         <div className="mt-2 flex flex-col md:flex-row gap-3">
-                                            <Input value={tempName} onChange={(e) => setTempName(e.target.value)} className={`${inputStyle} w-full md:w-72 bg-white`} placeholder="My schema name" />
+                                            <Input value={tempName} onChange={(e) => setTempName(e.target.value)} className={`${inputStyle} w-full md:w-72 bg-white text-black`} placeholder="My schema name" />
                                             <div className="flex gap-2 w-full md:w-auto">
                                                 <motion.div whileHover={buttonHover} className="flex-1">
                                                     <Button className={saveBtn + "w-full"} onClick={saveSchema}> Save</Button>
@@ -230,6 +251,36 @@ export default function Home() {
                         </CardContent>
                     </Card>
                 </motion.section>
+
+                {previewData.length > 0 && (
+                    <motion.section variants={cardAnimation} initial="hidden" animate="visible">
+                        <Card className="bg-[#1f2937] text-white rounded-xl shadow-lg overflow-auto mt-4">
+                            <CardHeader className="!px-6 !pt-6">
+                                <CardTitle className="text-lg font-semibold">Schema Preview</CardTitle>
+                            </CardHeader>
+                            <CardContent className="px-6 pb-6 pt-2">
+                                <table className="min-w-full border-collapse border border-gray-700">
+                                    <thead>
+                                        <tr>
+                                            {Object.keys(previewData[0]).map((key) => (
+                                                <th key={key} className="border border-gray-600 px-3 py-1 text-left text-sm">{key}</th>
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {previewData.map((row, idx) => (
+                                            <tr key={idx}>
+                                                {Object.values(row).map((val, i) => (
+                                                    <td key={i} className="border border-gray-600 px-3 py-1 text-sm">{String(val)}</td>
+                                                ))}
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </CardContent>
+                        </Card>
+                    </motion.section>
+                )}
 
                 {/* GENERATED DATA PREVIEW */}
                 {data.length > 0 && (

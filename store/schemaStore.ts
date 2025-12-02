@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Field } from "@/types";
+import { Field } from "@/types/Fields";
 
 interface SchemaState {
     schemaName: string;

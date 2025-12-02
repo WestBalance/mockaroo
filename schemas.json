@@ -1,105 +1,5 @@
 [
   {
-    "id": "1763992404608",
-    "name": "Test schema",
-    "fields": [
-      {
-        "id": "dc6cd35c-7eb2-48af-a5c5-da141eccf5e6",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      }
-    ]
-  },
-  {
-    "id": "1764014225746",
-    "name": "1",
-    "fields": [
-      {
-        "id": "889082ad-8f3a-49a5-80d7-4a6a52d6c05b",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      },
-      {
-        "id": "997b9b89-b2b7-4ad7-8fd5-96dc3f045282",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      }
-    ]
-  },
-  {
-    "id": "1764171745909",
-    "name": "12",
-    "fields": [
-      {
-        "id": "c6f2492a-6a92-4b93-8bbe-4f1e2f3b68b5",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      },
-      {
-        "id": "68b934b9-acf6-41af-b1a0-382b81c8e1b6",
-        "name": "Age",
-        "type": "Age",
-        "blankPercent": 40,
-        "sum": false
-      },
-      {
-        "id": "4cb71ab8-c6a3-4e87-bc0c-8155db3a9a1e",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      },
-      {
-        "id": "af38b5f0-a3d8-4692-a8a0-cba365e0f5bf",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      }
-    ]
-  },
-  {
-    "id": "1764171776664",
-    "name": "3",
-    "fields": [
-      {
-        "id": "dc6cd35c-7eb2-48af-a5c5-da141eccf5e6",
-        "name": "First Name",
-        "type": "First Name",
-        "blankPercent": 0,
-        "sum": false
-      }
-    ]
-  },
-  {
-    "id": "1764252659852",
-    "name": "27 11",
-    "fields": [
-      {
-        "id": "1b1f7182-256f-48a1-ba2a-db73d4f5d544",
-        "name": "Custom String",
-        "type": "Custom String",
-        "blankPercent": 0,
-        "sum": false
-      },
-      {
-        "id": "3c01966f-38d9-47b0-9010-d39f6a586012",
-        "name": "Quote",
-        "type": "Quote",
-        "blankPercent": 0,
-        "sum": false
-      }
-    ]
-  },
-  {
     "id": "1764259402781",
     "name": "schema",
     "fields": [
@@ -114,6 +14,40 @@
         "id": "d8276a66-5042-40a6-9b8c-8e3063851551",
         "name": "Last Name",
         "type": "Last Name",
+        "blankPercent": 0,
+        "sum": false
+      }
+    ]
+  },
+  {
+    "id": "1764665708190",
+    "name": "test 02 12",
+    "fields": [
+      {
+        "id": "b53583a7-d971-4fe9-bdda-d73cd954b7ec",
+        "name": "First Name",
+        "type": "First Name",
+        "blankPercent": 0,
+        "sum": false
+      },
+      {
+        "id": "0a14550c-30ea-4ff5-8be8-29db54dafd6e",
+        "name": "Last Name",
+        "type": "Last Name",
+        "blankPercent": 0,
+        "sum": false
+      },
+      {
+        "id": "09a0b299-da16-47c3-84ec-6ac4dcf4b1bf",
+        "name": "Increment ID",
+        "type": "Increment ID",
+        "blankPercent": 0,
+        "sum": false
+      },
+      {
+        "id": "cbe70b1b-f903-415b-b0ef-9192d024ffef",
+        "name": "UUID",
+        "type": "UUID",
         "blankPercent": 0,
         "sum": false
       }

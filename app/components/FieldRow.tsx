@@ -1,42 +1,51 @@
-﻿import { useState, FC } from "react";
+﻿"use client";
+
+import { useState, FC } from "react";
 import { Field } from "@/types/Fields";
 import { allFieldTypesWithCategories, FieldType } from "@/types/FieldTypes";
 import FieldTypeSelectorModal from "./FieldTypeSelectorModal";
+import { GripVertical } from "lucide-react";
 
 interface FieldRowProps {
     field: Field;
     onUpdate: (field: Field) => void;
     onDelete: (id: string) => void;
+    dragHandleProps?: any; // для DnD
 }
 
-const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete }) => {
+const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete, dragHandleProps }) => {
     const [showTypeModal, setShowTypeModal] = useState(false);
     const [showAiModal, setShowAiModal] = useState(false);
     const [aiInput, setAiInput] = useState("");
 
     return (
         <div className="ml-10 flex items-center gap-3 py-2 px-3 rounded-xl 
-                        bg-[#0d1220] border border-[#1b2338]
-                        shadow-[0_0_10px_rgba(0,255,255,0.15)]
-                        hover:shadow-[0_0_16px_rgba(0,255,255,0.35)] 
-                        transition">
+                    bg-[#0d1220] border border-[#1b2338]
+                    shadow-[0_0_10px_rgba(0,255,255,0.15)]
+                    hover:shadow-[0_0_16px_rgba(0,255,255,0.35)] 
+                    transition">
+
+            {/* Drag Handle */}
+            <div {...dragHandleProps} className="p-2 cursor-grab">
+                <GripVertical />
+            </div>
 
             {/* Field Name */}
             <input
                 value={field.name}
                 onChange={(e) => onUpdate({ ...field, name: e.target.value })}
                 className="w-40 rounded-lg px-2 py-1 text-black bg-white
-                           border border-cyan-300
-                           focus:border-cyan-400 focus:ring-2 focus:ring-cyan-300 
-                           transition font-semibold"
+                   border border-cyan-300
+                   focus:border-cyan-400 focus:ring-2 focus:ring-cyan-300 
+                   transition font-semibold"
             />
 
             {/* Type Button */}
             <button
                 onClick={() => setShowTypeModal(true)}
                 className="w-40 rounded-lg px-2 py-1 text-black bg-white 
-                           border border-pink-300 text-left
-                           hover:bg-pink-100 transition font-semibold"
+                   border border-pink-300 text-left
+                   hover:bg-pink-100 transition font-semibold"
             >
                 {field.type}
             </button>
@@ -68,16 +77,16 @@ const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete }) => {
                     onUpdate({ ...field, blankPercent: Number(e.target.value) })
                 }
                 className="w-20 rounded-lg px-2 py-1 text-black bg-white
-                           border border-yellow-300 text-center 
-                           hover:bg-yellow-100 font-semibold transition"
+                   border border-yellow-300 text-center 
+                   hover:bg-yellow-100 font-semibold transition"
             />
 
             {/* Delete */}
             <button
                 onClick={() => onDelete(field.id)}
                 className="text-red-400 font-bold px-2 py-1 rounded
-                           hover:bg-red-900 hover:text-red-300
-                           transition"
+                   hover:bg-red-900 hover:text-red-300
+                   transition"
             >
                 ✖
             </button>
@@ -86,10 +95,10 @@ const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete }) => {
             <button
                 onClick={() => setShowAiModal(true)}
                 className="w-9 h-9 rounded-lg bg-[#162032]
-                           border border-cyan-400 text-cyan-300
-                           hover:bg-[#1f2d45] hover:border-cyan-300 
-                           hover:shadow-[0_0_10px_cyan]
-                           transition text-xl"
+                   border border-cyan-400 text-cyan-300
+                   hover:bg-[#1f2d45] hover:border-cyan-300 
+                   hover:shadow-[0_0_10px_cyan]
+                   transition text-xl"
             >
                 🤖
             </button>
@@ -126,7 +135,7 @@ const FieldRow: FC<FieldRowProps> = ({ field, onUpdate, onDelete }) => {
                             >
                                 Отправить
                             </button>
-                        </div>  
+                        </div>
                     </div>
                 </div>
             )}
