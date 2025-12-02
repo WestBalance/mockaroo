@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { generateData } from "@/utils/generateData";
-import { Field } from "@/types";
+import { Field } from "@/types/Fields";
 import { Button } from "@/components/ui/button";
 import { Download, Play } from "lucide-react";
 

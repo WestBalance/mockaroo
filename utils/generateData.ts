@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // utils/generateData.ts
 import { fieldGenerators } from "./fieldGenerators";
-import { Field } from "@/types";
+import { Field } from "@/types/Fields";
 
 export function generateData(fields: Field[], rowCount: number) {
     const result: any[] = [];

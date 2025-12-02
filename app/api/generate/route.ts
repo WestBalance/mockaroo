@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { generateData } from "@/utils/generateData";
-import { Field } from "@/types";
+import { Field } from "@/types/Fields";
 
 export async function POST(req: Request) {
     try {
